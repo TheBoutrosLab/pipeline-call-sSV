@@ -114,7 +114,7 @@
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
       <li class="breadcrumb-item active">Nextflow Config File Parameters</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/uclahs-cds/pipeline-call-sSV/blob/08c00213907b74d636102632dd76f26bc6d21324/README.md" class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/uclahs-cds/pipeline-call-sSV/blob/41179a352a6f0ddb56f87235f9c15ab1e7340d3c/README.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -161,7 +161,7 @@
 <td>reference_fasta</td>
 <td>yes</td>
 <td>path</td>
-<td>Absolute path to the reference genome FASTA file. The reference genome is used by Delly for structural variant calling. GRCh37 - /hot/resource/reference-genome/GRCh37-EBI-hs37d5/hs37d5.fa, GRCh38 - /hot/resource/reference-genome/GRCh38-BI-20160721/Homo_sapiens_assembly38.fasta</td>
+<td>Absolute path to the reference genome FASTA file. The reference genome is used by Delly for structural variant calling.</td>
 </tr>
 <tr>
 <td>save_intermediate_files</td>
@@ -179,7 +179,7 @@
 <td>work_dir</td>
 <td>no</td>
 <td>path</td>
-<td>Path of working directory for Nextflow. When included in the sample config file, Nextflow intermediate files and logs will be saved to this directory. With <code>ucla_cds</code>, the default is <code>/scratch</code> and should only be changed for testing/development. Changing this directory to <code>/hot</code> or <code>/tmp</code> can lead to high server latency and potential disk space limitations, respectively.</td>
+<td>The path to a temporary working directory for Nextflow, storing intermediate files and logs. It is recommended to use fast, local storage with high I/O performance.</td>
 </tr>
 <tr>
 <td>verbose</td>
@@ -195,7 +195,7 @@
 </tr>
 </tbody>
 </table>
-<p>An example of the NextFlow Input Parameters Config file can be found <a href="https://github.com/uclahs-cds/pipeline-call-sSV/blob/08c00213907b74d636102632dd76f26bc6d21324/config/template.config">here</a>.</p>
+<p>An example of the NextFlow Input Parameters Config file can be found <a href="https://github.com/uclahs-cds/pipeline-call-sSV/blob/41179a352a6f0ddb56f87235f9c15ab1e7340d3c/config/template.config">here</a>.</p>
 <h3 id="delly-specific-parameters">DELLY Specific Parameters</h3>
 <table>
 <thead>
@@ -211,7 +211,7 @@
 <td>exclusion_file</td>
 <td>yes</td>
 <td>path</td>
-<td>Absolute path to the Delly reference genome exclusion file utilized to remove suggested regions for structural variant calling. GRCh37 - /hot/resource/tool-specific-input/Delly/GRCh37-EBI-hs37d/human.hs37d5.excl.tsv, GRCh38 - /hot/resource/tool-specific-input/Delly/hg38/human.hg38.excl.tsv</td>
+<td>Absolute path to the Delly reference genome exclusion file utilized to remove suggested regions for structural variant calling.</td>
 </tr>
 <tr>
 <td>map_qual</td>
@@ -248,19 +248,19 @@
 <td>gridss2_blacklist</td>
 <td>yes</td>
 <td>path</td>
-<td>Path to GRIDSS2 blacklist BED file. GRCh37 - <code>/hot/resource/tool-specific-input/GRIDSS2-2.13.2/GRCh37-EBI-hs37d5/ENCFF001TDO.bed</code> and GRCh38 - <code>/hot/resource/tool-specific-input/GRIDSS2-2.13.2/GRCh38-BI-20160721/ENCFF356LFX.bed</code></td>
+<td>Path to GRIDSS2 blacklist BED file.</td>
 </tr>
 <tr>
 <td>gridss2_reference_fasta</td>
 <td>yes</td>
 <td>path</td>
-<td>Path to GRIDSS2 reference FASTA file. GRCh37 - <code>/hot/resource/tool-specific-input/GRIDSS2-2.13.2/GRCh37-EBI-hs37d5/hs37d5.fa</code> and GRCh38 - <code>/hot/resource/tool-specific-input/GRIDSS2-2.13.2/GRCh38-BI-20160721/Homo_sapiens_assembly38.fasta</code></td>
+<td>Path to GRIDSS2 reference FASTA file.</td>
 </tr>
 <tr>
 <td>gridss2_pon_dir</td>
 <td>yes</td>
 <td>path</td>
-<td>Path to GRIDSS2 Panel Of Normals (PON) directory. GRCh37 - <code>/hot/resource/tool-specific-input/GRIDSS2-2.13.2/GRCh37-EBI-hs37d5/</code> and GRCh38 - <code>/hot/resource/tool-specific-input/GRIDSS2-2.13.2/GRCh38-BI-20160721/</code></td>
+<td>Path to GRIDSS2 Panel Of Normals (PON) directory.</td>
 </tr>
 <tr>
 <td>other_jvm_heap</td>
@@ -296,7 +296,7 @@
 </tbody>
 </table>
 <h3 id="base-resource-allocation-updaters">Base resource allocation updaters</h3>
-<p>To optionally update the base resource (cpus or memory) allocations for processes, use the following structure and add the necessary parts to the <a href="https://github.com/uclahs-cds/pipeline-call-sSV/blob/08c00213907b74d636102632dd76f26bc6d21324/config/template.config">input.config</a> file. The default allocations can be found in the <a href="https://github.com/uclahs-cds/pipeline-call-sSV/blob/08c00213907b74d636102632dd76f26bc6d21324/config">node-specific config files</a></p>
+<p>To optionally update the base resource (cpus or memory) allocations for processes, use the following structure and add the necessary parts to the <a href="https://github.com/uclahs-cds/pipeline-call-sSV/blob/41179a352a6f0ddb56f87235f9c15ab1e7340d3c/config/template.config">input.config</a> file. The default allocations can be found in the <a href="https://github.com/uclahs-cds/pipeline-call-sSV/blob/41179a352a6f0ddb56f87235f9c15ab1e7340d3c/config">node-specific config files</a></p>
 <pre><code class="language-Nextflow">base_resource_update {
     memory = [
         [['process_name', 'process_name2'], &lt;multiplier for resource&gt;],
