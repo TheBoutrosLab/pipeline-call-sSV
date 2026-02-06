@@ -12,7 +12,7 @@ include { generate_standard_filename } from '../external/pipeline-Nextflow-modul
 
 process plot_SV_circlize {
     container params.docker_image_circlize
-    containerOptions "-v ${projectDir}:${projectDir}"
+    containerOptions "${params.container_mount_flag} ${projectDir}:${projectDir}"
 
     errorStrategy 'ignore'
 
