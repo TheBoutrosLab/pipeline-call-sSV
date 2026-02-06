@@ -11,11 +11,13 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Added
 
 - `SVision` caller
+- Add containerization profiles
 
 ### Changed
 
 - Update Delly `v1.2.6` to `v1.5.0`
 - Remove cluster paths from README
+- Use `TheBoutrosLab` submodules
 
 ## [7.0.0] - 2025-05-16
 
