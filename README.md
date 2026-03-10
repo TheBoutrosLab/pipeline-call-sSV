@@ -1,6 +1,6 @@
 # Call-sSV Pipeline
 
-[![GitHub release](https://img.shields.io/github/v/release/uclahs-cds/pipeline-call-sSV)](https://github.com/uclahs-cds/pipeline-call-sSV/actions/workflows/prepare-release.yaml)
+[![GitHub release](https://img.shields.io/github/v/release/theboutroslab/pipeline-call-sSV)](https://github.com/theboutroslab/pipeline-call-sSV/actions/workflows/prepare-release.yaml)
 
 * [Overview](#Overview)
 * [How To Run](#How-To-Run)
@@ -43,7 +43,7 @@ Pipelines should be run **WITH A SINGLE SAMPLE AT A TIME**. Otherwise resource a
 nextflow run path/to/main.nf -config path/to/sample-specific.config -params-file path/to/input.yaml
 ```
 
-To submit to UCLAHS-CDS's Azure cloud, use the submission script [here](https://github.com/uclahs-cds/tool-submit-nf) with the command below:
+To submit to UCLAHS-CDS's Azure cloud, use the submission script [here](https://github.com/theboutroslab/tool-submit-nf) with the command below:
 
 ```bash
 python path/to/submit_nextflow_pipeline.py \
@@ -283,7 +283,7 @@ Testing was performed primarily in the Boutros Lab SLURM Development cluster. Me
 | TWGSAMIN000001-T003-S03-F | 2023-01-19 | F16 | 41m 35s | 0.7 | 1.8 GB |
 | ILHNLNEV000009-T002-L01-F | 2023-01-20 | F32 | 1d 23h 10m 46s | 63.3 | 12.1 GB |
 | DTB-266_WCDT | 2023-01-19 | F72 | 22h 55m 17s | 45.1 | 13.2 GB |
-|ILHNLNEV000005-T002-L01-F (with stringent filters. See [#10](https://github.com/uclahs-cds/pipeline-call-sSV/issues/10) [2f72de1](https://github.com/uclahs-cds/pipeline-call-sSV/commit/2f72de1ba190623e4344f144a12cc315fda1dd18)) | 2021-10-02 | F72 | 1d 10h 55m 13s | 2'478.4h | 11.590 GB |
+|ILHNLNEV000005-T002-L01-F (with stringent filters. See [#10](https://github.com/theboutroslab/pipeline-call-sSV/issues/10) [2f72de1](https://github.com/theboutroslab/pipeline-call-sSV/commit/2f72de1ba190623e4344f144a12cc315fda1dd18)) | 2021-10-02 | F72 | 1d 10h 55m 13s | 2'478.4h | 11.590 GB |
 
 
 ## References
