@@ -38,6 +38,9 @@
     "trace.file"
   ],
   "expected_result": {
+    "apptainer": {
+      "enabled": false
+    },
     "docker": {
       "all_group_ids": "$(for i in `id --real --groups`; do echo -n \"--group-add=$i \"; done)",
       "enabled": true,
@@ -104,6 +107,7 @@
       "blcds_registered_dataset": false,
       "cache_intermediate_pipeline_steps": false,
       "circlize_version": "0.4.16_vcfR-1.15.0_BoutrosLab.plotting.general-7.1.0",
+      "container_mount_flag": "-v",
       "dataset_id": "TEST",
       "delly_version": "1.5.0",
       "docker_container_registry": "ghcr.io/uclahs-cds",
