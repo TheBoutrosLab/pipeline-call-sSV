@@ -15,9 +15,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
-- Update Delly `v1.2.6` to `v1.5.0`
+- Update Delly `v1.2.6` to `v1.7.3`
 - Remove cluster paths from README
 - Use `TheBoutrosLab` submodules
+- Update BCFtools `v1.15.1` to `v1.23.1`
 
 ## [7.0.0] - 2025-05-16
 
