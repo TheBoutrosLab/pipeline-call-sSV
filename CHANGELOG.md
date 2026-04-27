@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [8.0.0] - 2026-04-27
 
 ### Added
 
@@ -185,16 +185,17 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Add option to specify `map_qual`, `min_clique_size`, and `mad_cutoff` Delly filters to reduce the runtime.
 - Use BCFtools to automatically generate the samples.tsv that is needed by the sSV filtering (see <https://github.com/dellytools/delly>).
 
-[1.0.0]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v1.0.0-rc1...v1.0.0
-[1.0.0-rc1]: https://github.com/uclahs-cds/pipeline-call-sSV/releases/tag/v1.0.0-rc1
-[1.0.1]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v1.0.0...v1.0.1
-[2.0.0]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v1.0.1...v2.0.0
-[3.0.0]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v2.0.0...v3.0.0
-[4.0.0]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v3.0.0...v4.0.0
-[5.0.0]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v5.0.0-rc.1...v5.0.0
-[5.0.0-rc.1]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v4.0.0...v5.0.0-rc.1
-[6.0.0]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v6.0.0-rc.2...v6.0.0
-[6.0.0-rc.1]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v5.0.0...v6.0.0-rc.1
-[6.0.0-rc.2]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v6.0.0-rc.1...v6.0.0-rc.2
-[6.1.0]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v6.0.0...v6.1.0
-[7.0.0]: https://github.com/uclahs-cds/pipeline-call-sSV/compare/v6.1.0...v7.0.0
+[1.0.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v1.0.0-rc1...v1.0.0
+[1.0.0-rc1]: https://github.com/TheBoutrosLab/pipeline-call-sSV/releases/tag/v1.0.0-rc1
+[1.0.1]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v1.0.0...v1.0.1
+[2.0.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v1.0.1...v2.0.0
+[3.0.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v2.0.0...v3.0.0
+[4.0.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v3.0.0...v4.0.0
+[5.0.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v5.0.0-rc.1...v5.0.0
+[5.0.0-rc.1]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v4.0.0...v5.0.0-rc.1
+[6.0.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v6.0.0-rc.2...v6.0.0
+[6.0.0-rc.1]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v5.0.0...v6.0.0-rc.1
+[6.0.0-rc.2]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v6.0.0-rc.1...v6.0.0-rc.2
+[6.1.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v6.0.0...v6.1.0
+[7.0.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v6.1.0...v7.0.0
+[8.0.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v7.0.0...v8.0.0
