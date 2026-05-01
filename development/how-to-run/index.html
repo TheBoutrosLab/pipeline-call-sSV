@@ -110,7 +110,7 @@
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
       <li class="breadcrumb-item active">How to Run:</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/TheBoutrosLab/pipeline-call-sSV/blob/cbb2f9d0a8c108afdef9decaaac2aff33d1710a9/README.md" class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/TheBoutrosLab/pipeline-call-sSV/blob/cce51e4a32976ef635deb025498096642e24d2aa/README.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -126,13 +126,13 @@
 <p>Pipelines should be run <strong>WITH A SINGLE SAMPLE AT A TIME</strong>. Otherwise resource allocation and Nextflow errors could cause the pipeline to fail.</p>
 <ol>
 <li>
-<p>Create a config file for input, output, and parameters. An example for a config file can be found <a href="https://github.com/TheBoutrosLab/pipeline-call-sSV/blob/cbb2f9d0a8c108afdef9decaaac2aff33d1710a9/config/template.config">here</a>. See <a href="../nextflow-config-file-parameters/#Nextflow-Config-File-Parameters">Nextflow Config File Parameters</a> for the detailed description of each variable in the config file.</p>
+<p>Create a config file for input, output, and parameters. An example for a config file can be found <a href="https://github.com/TheBoutrosLab/pipeline-call-sSV/blob/cce51e4a32976ef635deb025498096642e24d2aa/config/template.config">here</a>. See <a href="../nextflow-config-file-parameters/#Nextflow-Config-File-Parameters">Nextflow Config File Parameters</a> for the detailed description of each variable in the config file.</p>
 </li>
 <li>
 <p>Do not directly modify the source <code>template.config</code>, but rather you should copy it from the pipeline release folder to your project-specific folder and modify it there</p>
 </li>
 <li>
-<p>Create the input YAML using the <a href="https://github.com/TheBoutrosLab/pipeline-call-sSV/blob/cbb2f9d0a8c108afdef9decaaac2aff33d1710a9/input/call-sSV-input.yaml">template</a>.See <a href="../inputs/#Input-YAML">Input YAML</a> for detailed description.</p>
+<p>Create the input YAML using the <a href="https://github.com/TheBoutrosLab/pipeline-call-sSV/blob/cce51e4a32976ef635deb025498096642e24d2aa/input/call-sSV-input.yaml">template</a>.See <a href="../inputs/#Input-YAML">Input YAML</a> for detailed description.</p>
 </li>
 <li>
 <p>Again, do not directly modify the source template input YAML file.  Instead, copy it from the pipeline release folder to your project-specific folder and modify it there.</p>
@@ -153,7 +153,7 @@
     --email &lt;your UCLA email, jdoe@ucla.edu&gt;
 </code></pre>
 <p>In the above command, the partition type can be changed based on the size of the dataset. At this point, node F16 is generally recommended for larger datasets like A-full and node F2 for smaller datasets like A-mini.</p>
-<p>* Manta SV calling wouldn't work on an F2 node due to incompatible resources. In order to test the pipeline for tasks not relevant to Manta, please set <code>algorithm = ['delly']</code> in the sample specific <a href="https://github.com/TheBoutrosLab/pipeline-call-sSV/blob/cbb2f9d0a8c108afdef9decaaac2aff33d1710a9/config/template.config">config</a> file.</p>
+<p>* Manta SV calling wouldn't work on an F2 node due to incompatible resources. In order to test the pipeline for tasks not relevant to Manta, please set <code>algorithm = ['delly']</code> in the sample specific <a href="https://github.com/TheBoutrosLab/pipeline-call-sSV/blob/cce51e4a32976ef635deb025498096642e24d2aa/config/template.config">config</a> file.</p>
 <blockquote>
 <p><strong>Note</strong>: Because this pipeline uses an image stored in the GitHub Container Registry, you must follow the steps listed in the <a href="https://uclahs-cds.atlassian.net/wiki/spaces/BOUTROSLAB/pages/3190419/Docker+Introduction#DockerIntroduction-HowtosetupPATandlogintotheregistryHowtosetupPATandlogintotheregistry">Docker Introduction</a> on Confluence to set up a PAT for your GitHub account and log into the registry on the cluster before running this pipeline.</p>
 </blockquote>
