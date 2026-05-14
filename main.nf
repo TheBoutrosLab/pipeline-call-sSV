@@ -55,9 +55,8 @@ include {
     call_sSV_Delly
     filter_sSV_Delly } from './module/delly'
 
-include { call_sSV_Manta } from './module/manta' addParams(
-    workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}"
-    )
+include { call_sSV_Manta } from './module/manta'
+
 include { workflow_SVision } from './module/workflow-svision.nf' addParams(
     workflow_output_dir: "${params.output_dir_base}/SVision-${params.svision_version}"
     )
@@ -259,6 +258,7 @@ workflow {
         }
     if ('manta' in params.algorithm) {
         call_sSV_Manta(
+            manta_meta,
             input_paired_bams_ch,
             params.reference_fasta,
             reference_fasta_index
