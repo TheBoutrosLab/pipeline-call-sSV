@@ -343,10 +343,12 @@ workflow {
             )
 
         compress_meta = gridss2_meta.map{ base_m ->
-            "output_dir": "${base_m.workflow_output_dir}",
-            "log_output_dir": "${params.log_output_dir}/process-log",
-            "save_intermediate_files": params.save_intermediate_files,
-            "id": params.sample
+            base_m + [
+                "output_dir": "${base_m.workflow_output_dir}",
+                "log_output_dir": "${params.log_output_dir}/process-log",
+                "save_intermediate_files": params.save_intermediate_files,
+                "id": params.sample
+            ]
         }
 
         compress_VCF_GRIDSS2(
