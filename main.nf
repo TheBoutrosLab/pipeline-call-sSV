@@ -57,19 +57,18 @@ include {
 
 include { call_sSV_Manta } from './module/manta'
 
-include { workflow_SVision } from './module/workflow-svision.nf' addParams(
-    workflow_output_dir: "${params.output_dir_base}/SVision-${params.svision_version}"
-    )
+include { workflow_SVision } from './module/workflow-svision.nf'
+
 include {
     plot_SV_circlize as plot_DellySV_circlize
     plot_SV_circlize as plot_MantaSV_circlize } from './module/circos-plot.nf'
 
-include { plot_SV_circlize as plot_MantaSV_circlize } from './module/circos-plot.nf' addParams(
-    workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}"
-)
-include { preprocess_BAM_GRIDSS2; run_assembly_GRIDSS2; call_sSV_GRIDSS2; filter_sSV_GRIDSS2 } from './module/gridss2' addParams(
-    workflow_output_dir: "${params.output_dir_base}/GRIDSS2-${params.gridss2_version}"
-    )
+include {
+    preprocess_BAM_GRIDSS2
+    run_assembly_GRIDSS2
+    call_sSV_GRIDSS2
+    filter_sSV_GRIDSS2 } from './module/gridss2'
+
 include { compress_VCF as compress_VCF_GRIDSS2 } from './module/workflow-compress_VCF' addParams(
     workflow_output_dir: "${params.output_dir_base}/GRIDSS2-${params.gridss2_version}"
     )
@@ -287,6 +286,7 @@ workflow {
         }
     if ('gridss2' in params.algorithm) {
         preprocess_BAM_GRIDSS2(
+            gridss2_meta,
             gridss2_ch,
             params.gridss2_reference_fasta,
             gridss2_reference_files
@@ -298,6 +298,7 @@ workflow {
             .collect()
 
         run_assembly_GRIDSS2(
+            gridss2_meta,
             input_paired_bams_ch,
             gridss2_preprocess_dir,
             params.gridss2_reference_fasta,
@@ -312,6 +313,7 @@ workflow {
             .collect()
 
         call_sSV_GRIDSS2(
+            gridss2_meta,
             input_paired_bams_ch,
             gridss2_preprocess_dir,
             gridss2_assembly_dir,
@@ -322,6 +324,7 @@ workflow {
             )
 
         filter_sSV_GRIDSS2(
+            gridss2_meta,
             params.sample,
             call_sSV_GRIDSS2.out.gridss2_vcf,
             params.gridss2_pon_dir
@@ -341,6 +344,7 @@ workflow {
 
     if ('svision' in params.algorithm) {
         workflow_SVision(
+            svision_meta,
             input_ch_samples_with_index.map{ input_sample -> [input_sample.id, input_sample.path, input_sample.index] }
             )
         }
