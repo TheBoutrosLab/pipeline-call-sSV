@@ -14,7 +14,7 @@ workflow convert_BCF2VCF {
 
     convert_meta = Channel.value([
         "docker_image": params.docker_image_bcftools,
-        "log_output_dir": "${params.log_output_dir}/process-log",
+        "log_output_dir": "${params.log_output_dir}",
         "output_dir": "${params.output_dir_base}/DELLY-${params.delly_version}/output"
     ])
 
