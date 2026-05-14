@@ -60,9 +60,10 @@ include { call_sSV_Manta } from './module/manta'
 include { workflow_SVision } from './module/workflow-svision.nf' addParams(
     workflow_output_dir: "${params.output_dir_base}/SVision-${params.svision_version}"
     )
-include { plot_SV_circlize as plot_DellySV_circlize } from './module/circos-plot.nf' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}"
-)
+include {
+    plot_SV_circlize as plot_DellySV_circlize
+    plot_SV_circlize as plot_MantaSV_circlize } from './module/circos-plot.nf'
+
 include { plot_SV_circlize as plot_MantaSV_circlize } from './module/circos-plot.nf' addParams(
     workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}"
 )
@@ -243,6 +244,7 @@ workflow {
             .set{ input_ch_plot_delly }
 
         plot_DellySV_circlize(
+            delly_meta,
             input_ch_plot_delly
             )
 
@@ -272,6 +274,7 @@ workflow {
             .set{ input_ch_plot_manta }
 
         plot_MantaSV_circlize(
+            manta_meta,
             input_ch_plot_manta
             )
 
