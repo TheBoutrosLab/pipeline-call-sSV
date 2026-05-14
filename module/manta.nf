@@ -13,11 +13,11 @@ include { generate_standard_filename } from '../external/pipeline-Nextflow-modul
 process call_sSV_Manta {
     container params.docker_image_manta
 
-    publishDir "${params.workflow_output_dir}/output",
+    publishDir "${META.workflow_output_dir}/output",
         pattern: "*vcf.gz*",
         mode: "copy"
 
-    publishDir "${params.workflow_output_dir}/QC",
+    publishDir "${META.workflow_output_dir}/QC",
         pattern: "*Stats*",
         mode: "copy"
 
@@ -27,6 +27,7 @@ process call_sSV_Manta {
         saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
 
     input:
+        val(META)
         tuple(val(tumor_id), path(tumor_bam), path(tumor_bai), path(normal_bam), path(normal_bai))
         path reference_fasta
         path reference_fasta_fai

@@ -7,7 +7,7 @@ process call_SV_SVision {
 
     errorStrategy 'ignore'
 
-    publishDir "${params.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
+    publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "*.vcf",
         mode: "copy"
@@ -18,6 +18,7 @@ process call_SV_SVision {
         saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
 
     input:
+        val(META)
         tuple val(sample_id), path(bam), path(bam_index)
         path svision_model
         path reference_fasta

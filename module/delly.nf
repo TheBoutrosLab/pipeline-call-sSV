@@ -13,7 +13,7 @@ include { generate_standard_filename } from '../external/pipeline-Nextflow-modul
 process call_sSV_Delly {
     container params.docker_image_delly
 
-    publishDir "${params.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
+    publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "DELLY-*.bcf*",
         mode: "copy"
@@ -24,6 +24,7 @@ process call_sSV_Delly {
         saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
 
     input:
+        val(META)
         tuple(val(tumor_id), path(tumor_bam), path(tumor_bai), path(normal_bam), path(normal_bai))
         path reference_fasta
         path reference_fasta_fai
@@ -62,7 +63,7 @@ process call_sSV_Delly {
 process filter_sSV_Delly {
     container params.docker_image_delly
 
-    publishDir "${params.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
+    publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "${output_filename}.bcf*",
         mode: "copy"
@@ -73,6 +74,7 @@ process filter_sSV_Delly {
         saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
 
     input:
+        val META
         path samples
         path input_bcf
         path input_bcf_csi
