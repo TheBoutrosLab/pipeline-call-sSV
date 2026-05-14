@@ -43,6 +43,8 @@ Starting workflow...
 """
 .stripIndent()
 
+include { indexFile } from "./external/pipeline-Nextflow-module/modules/common/indexFile/main.nf"
+
 include { run_validate_PipeVal } from "./external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf" addParams(
     options: [ docker_image_version: params.pipeval_version ]
     )
@@ -83,15 +85,6 @@ include { generate_sha512 as generate_sha512_GRIDSS2 } from './module/sha512' ad
     workflow_output_dir: "${params.output_dir_base}/GRIDSS2-${params.gridss2_version}"
     )
 
-
-// Returns the index file for the given bam
-def indexFile(bam) {
-    if (bam.endsWith('.bam')) {
-        return "${bam}.bai"
-    } else {
-        throw new Exception("Index file for ${bam} file type not supported. Use .bam!")
-    }
-}
 
 Channel.from(params.samples_to_process)
     .map{ sample -> ['index': indexFile(sample.path)] + sample }
