@@ -47,12 +47,14 @@ include { indexFile } from "./external/pipeline-Nextflow-module/modules/common/i
 
 include { run_validate_PipeVal } from "./external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf"
 
-include { query_SampleName_BCFtools; filter_BCF_BCFtools } from './module/bcftools' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}"
-    )
-include { call_sSV_Delly; filter_sSV_Delly } from './module/delly' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}"
-    )
+include {
+    query_SampleName_BCFtools
+    filter_BCF_BCFtools } from './module/bcftools'
+
+include {
+    call_sSV_Delly
+    filter_sSV_Delly } from './module/delly'
+
 include { call_sSV_Manta } from './module/manta' addParams(
     workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}"
     )
@@ -131,6 +133,30 @@ workflow {
         ]
     }
 
+    delly_meta = meta_base.map{ base_m ->
+        base_m + [
+            "workflow_output_dir": "${params.output_dir_base}/DELLY-${params.delly_version}"
+        ]
+    }
+
+    manta_meta = meta_base.map{ base_m ->
+        base_m + [
+            "workflow_output_dir": "${params.output_dir_base}/Manta-${params.manta_version}"
+        ]
+    }
+
+    gridss2_meta = meta_base.map{ base_m ->
+        base_m + [
+            "workflow_output_dir": "${params.output_dir_base}/GRIDSS2-${params.gridss2_version}"
+        ]
+    }
+
+    svision_meta = meta_base.map{ base_m ->
+        base_m + [
+            "workflow_output_dir": "${params.output_dir_base}/SVision-${params.svision_version}"
+        ]
+    }
+
     /**
     * Validate the input bams
     */
@@ -148,6 +174,7 @@ workflow {
     */
     if ('delly' in params.algorithm) {
         call_sSV_Delly(
+            delly_meta,
             input_paired_bams_ch,
             params.reference_fasta,
             reference_fasta_index,
@@ -177,6 +204,7 @@ workflow {
         * HG002.N
         */
         query_SampleName_BCFtools(
+            delly_meta,
             call_sSV_Delly.out.nt_call_bcf,
             call_sSV_Delly.out.samples,
             call_sSV_Delly.out.tumor_id
@@ -187,6 +215,7 @@ workflow {
         * by using the call_sSV_Delly.out.samples and call_sSV_Delly.out.nt_call_bcf
         */
         filter_sSV_Delly(
+            delly_meta,
             query_SampleName_BCFtools.out.samples,
             call_sSV_Delly.out.nt_call_bcf,
             call_sSV_Delly.out.nt_call_bcf_csi,
@@ -197,6 +226,7 @@ workflow {
         * The default filter_condition is "FILTER=='PASS'", which filters out NonPass calls.
         */
         filter_BCF_BCFtools(
+            delly_meta,
             filter_sSV_Delly.out.somatic_bcf,
             params.filter_condition,
             call_sSV_Delly.out.tumor_id
