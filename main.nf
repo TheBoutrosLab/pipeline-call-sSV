@@ -49,11 +49,13 @@ include { run_validate_PipeVal } from "./external/pipeline-Nextflow-module/modul
 
 include {
     query_SampleName_BCFtools
-    filter_BCF_BCFtools } from './module/bcftools'
+    filter_BCF_BCFtools
+} from './module/bcftools'
 
 include {
     call_sSV_Delly
-    filter_sSV_Delly } from './module/delly'
+    filter_sSV_Delly
+} from './module/delly'
 
 include { call_sSV_Manta } from './module/manta'
 
@@ -61,13 +63,15 @@ include { workflow_SVision } from './module/workflow-svision.nf'
 
 include {
     plot_SV_circlize as plot_DellySV_circlize
-    plot_SV_circlize as plot_MantaSV_circlize } from './module/circos-plot.nf'
+    plot_SV_circlize as plot_MantaSV_circlize
+} from './module/circos-plot.nf'
 
 include {
     preprocess_BAM_GRIDSS2
     run_assembly_GRIDSS2
     call_sSV_GRIDSS2
-    filter_sSV_GRIDSS2 } from './module/gridss2'
+    filter_sSV_GRIDSS2
+} from './module/gridss2'
 
 include { compress_VCF as compress_VCF_GRIDSS2 } from './module/workflow-compress_VCF' addParams(
     workflow_output_dir: "${params.output_dir_base}/GRIDSS2-${params.gridss2_version}"
@@ -75,15 +79,12 @@ include { compress_VCF as compress_VCF_GRIDSS2 } from './module/workflow-compres
 include { convert_BCF2VCF as convert_BCF2VCF_Delly } from './module/workflow-convert_BCF2VCF' addParams(
     workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}"
     )
-include { generate_sha512 as generate_sha512_BCFtools } from './module/sha512' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}"
-    )
-include { generate_sha512 as generate_sha512_Manta } from './module/sha512' addParams(
-    workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}"
-    )
-include { generate_sha512 as generate_sha512_GRIDSS2 } from './module/sha512' addParams(
-    workflow_output_dir: "${params.output_dir_base}/GRIDSS2-${params.gridss2_version}"
-    )
+
+include {
+    generate_checksum_PipeVal as generate_sha512_BCFtools
+    generate_checksum_PipeVal as generate_sha512_GRIDSS2
+    generate_checksum_PipeVal as generate_sha512_Manta
+} from './external/pipeline-Nextflow-module/modules/PipeVal/generate-checksum/main.nf'
 
 
 Channel.from(params.samples_to_process)
@@ -251,10 +252,17 @@ workflow {
         * Generate one sha512 checksum for DELLY's output files.
         */
         generate_sha512_BCFtools(
-            filter_BCF_BCFtools.out.nonPassCallsFiltered_bcf
-            .mix(filter_BCF_BCFtools.out.nonPassCallsFiltered_bcf_csi)
-            .mix(convert_BCF2VCF_Delly.out.gzvcf)
-            .mix(convert_BCF2VCF_Delly.out.idx)
+            delly_meta.map{ base_m ->
+                base_m + [
+                    "output_dir": "${base_m.workflow_output_dir}/output",
+                    "docker_image": params.docker_image_validate
+                ]
+            }.combine(
+                filter_BCF_BCFtools.out.nonPassCallsFiltered_bcf
+                    .mix(filter_BCF_BCFtools.out.nonPassCallsFiltered_bcf_csi)
+                    .mix(convert_BCF2VCF_Delly.out.gzvcf)
+                    .mix(convert_BCF2VCF_Delly.out.idx)
+                )
             )
         }
     if ('manta' in params.algorithm) {
@@ -281,7 +289,14 @@ workflow {
         * Generate one sha512 checksum for the output files.
         */
         generate_sha512_Manta(
-            call_sSV_Manta.out.manta_vcfs.flatten()
+            manta_meta.map{ base_m ->
+                base_m + [
+                    "output_dir": "${base_m.workflow_output_dir}/output",
+                    "docker_image": params.docker_image_validate
+                ]
+            }.combine(
+                call_sSV_Manta.out.manta_vcfs.flatten()
+            )
             )
         }
     if ('gridss2' in params.algorithm) {
@@ -336,9 +351,16 @@ workflow {
             )
 
         generate_sha512_GRIDSS2(
-            compress_VCF_GRIDSS2.out.gzvcf
-            .mix(compress_VCF_GRIDSS2.out.idx)
-            .mix(filter_sSV_GRIDSS2.out.gridss2_filter_vcf_files.flatten())
+            gridss2_meta.map{ base_m ->
+                base_m + [
+                    "output_dir": "${base_m.workflow_output_dir}/output",
+                    "docker_image": params.docker_image_validate
+                ]
+            }.combine(
+                compress_VCF_GRIDSS2.out.gzvcf
+                    .mix(compress_VCF_GRIDSS2.out.idx)
+                    .mix(filter_sSV_GRIDSS2.out.gridss2_filter_vcf_files.flatten())
+                )
             )
         }
 
