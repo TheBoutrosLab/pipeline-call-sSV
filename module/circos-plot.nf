@@ -16,7 +16,7 @@ process plot_SV_circlize {
 
     errorStrategy 'ignore'
 
-    publishDir "${params.workflow_output_dir}/QC",
+    publishDir "${META.workflow_output_dir}/QC",
         pattern: "*.png",
         mode: "copy"
 
@@ -26,6 +26,7 @@ process plot_SV_circlize {
         saveAs: { "${task.process}/${task.process}-${task.index}/log${file(it).getName()}" }
 
     input:
+        val(META)
         tuple(
             val(caller),
             path(vcf)
