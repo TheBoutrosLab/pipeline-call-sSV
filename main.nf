@@ -73,12 +73,9 @@ include {
     filter_sSV_GRIDSS2
 } from './module/gridss2'
 
-include { compress_VCF as compress_VCF_GRIDSS2 } from './module/workflow-compress_VCF' addParams(
-    workflow_output_dir: "${params.output_dir_base}/GRIDSS2-${params.gridss2_version}"
-    )
-include { convert_BCF2VCF as convert_BCF2VCF_Delly } from './module/workflow-convert_BCF2VCF' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}"
-    )
+include { compress_index_VCF as compress_VCF_GRIDSS2 } from "./external/pipeline-Nextflow-module/modules/common/index_VCF_tabix/main.nf"
+
+include { convert_BCF2VCF as convert_BCF2VCF_Delly } from './module/workflow-convert_BCF2VCF'
 
 include {
     generate_checksum_PipeVal as generate_sha512_BCFtools
@@ -345,9 +342,15 @@ workflow {
             params.gridss2_pon_dir
             )
 
+        compress_meta = gridss2_meta.map{ base_m ->
+            "output_dir": "${base_m.workflow_output_dir}",
+            "log_output_dir": "${params.log_output_dir}/process-log",
+            "save_intermediate_files": params.save_intermediate_files,
+            "id": params.sample
+        }
+
         compress_VCF_GRIDSS2(
-            Channel.of(params.sample),
-            call_sSV_GRIDSS2.out.gridss2_vcf
+            compress_meta.combine(call_sSV_GRIDSS2.out.gridss2_vcf)
             )
 
         generate_sha512_GRIDSS2(
