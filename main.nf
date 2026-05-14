@@ -45,9 +45,8 @@ Starting workflow...
 
 include { indexFile } from "./external/pipeline-Nextflow-module/modules/common/indexFile/main.nf"
 
-include { run_validate_PipeVal } from "./external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf" addParams(
-    options: [ docker_image_version: params.pipeval_version ]
-    )
+include { run_validate_PipeVal } from "./external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf"
+
 include { query_SampleName_BCFtools; filter_BCF_BCFtools } from './module/bcftools' addParams(
     workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}"
     )
@@ -121,11 +120,22 @@ reference_fasta_index = "${params.reference_fasta}.fai"
 gridss2_reference_files = Channel.fromPath( "${params.gridss2_reference_fasta}.*", checkIfExists: true ).collect()
 
 workflow {
+    meta_base = Channel.value([
+        "output_dir_base": params.output_dir_base,
+        "log_output_dir": params.log_output_dir
+    ])
+
+    pipeval_meta = meta_base.map{ base_m ->
+        base_m + [
+            "docker_image": params.docker_image_validate
+        ]
+    }
+
     /**
     * Validate the input bams
     */
-    run_validate_PipeVal(input_validation)
-    // Collect and store input validation output
+    run_validate_PipeVal(pipeval_meta.combine(input_validation))
+
     run_validate_PipeVal.out.validation_result.collectFile(
         name: 'input_validation.txt',
         storeDir: "${params.output_dir_base}/validation/run_validate_PipeVal"
