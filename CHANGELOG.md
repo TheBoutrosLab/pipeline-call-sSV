@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Changed
+
+- Update Delly `v1.7.3` to `v2.0.0`
+
 ### Removed
 
 - Usage of `addParams`
