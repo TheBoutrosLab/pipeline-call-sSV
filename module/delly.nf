@@ -18,11 +18,6 @@ process call_sSV_Delly {
         pattern: "DELLY-*.bcf*",
         mode: "copy"
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
-
     input:
         val(META)
         tuple(val(tumor_id), path(tumor_bam), path(tumor_bai), path(normal_bam), path(normal_bai))
@@ -34,7 +29,6 @@ process call_sSV_Delly {
         path "${output_filename}.bcf", emit: nt_call_bcf
         path "${output_filename}.bcf.csi", emit: nt_call_bcf_csi
         path "${tumor_id}", emit: samples
-        path ".command.*"
         val tumor_id, emit: tumor_id
 
     script:
@@ -68,11 +62,6 @@ process filter_sSV_Delly {
         pattern: "${output_filename}.bcf*",
         mode: "copy"
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
-
     input:
         val META
         path samples
@@ -83,7 +72,6 @@ process filter_sSV_Delly {
     output:
         path "${output_filename}.bcf", emit: somatic_bcf
         path "${output_filename}.bcf.csi", emit: somatic_bcf_csi
-        path ".command.*"
 
     script:
         output_filename = generate_standard_filename(
