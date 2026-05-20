@@ -20,10 +20,7 @@ process plot_SV_circlize {
         pattern: "*.png",
         mode: "copy"
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process}/${task.process}-${task.index}/log${file(it).getName()}" }
+    ext log_dir: { "${task.process}/${task.process}-${task.index}" }
 
     input:
         val(META)
@@ -34,7 +31,6 @@ process plot_SV_circlize {
 
     output:
         path "*.png"
-        path ".command.*"
 
     script:
     output_filename = generate_standard_filename(

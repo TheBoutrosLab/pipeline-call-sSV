@@ -21,10 +21,7 @@ process preprocess_BAM_GRIDSS2 {
             "${output_filename}.gridss.working/${output_filename}.${sanitize_string(file(it).getName().replace("${bam_name}.", ""))}"
             }
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/${task.process}-${task.index}/log${file(it).getName()}" }
+    ext log_dir_suffix: { "/${task.process}-${task.index}" }
 
     input:
         val(META)
@@ -34,7 +31,6 @@ process preprocess_BAM_GRIDSS2 {
 
     output:
         path "${bam_name}.gridss.working/*", emit: gridss2_preprocess
-        path ".command.*"
 
     script:
         gridss2_mem = "${task.memory.toGiga()}g"
@@ -78,11 +74,6 @@ process run_assembly_GRIDSS2 {
             "${output_filename}.assembly.bam.gridss.working/${output_filename}_${sanitize_string(file(it).getName().replace("${tumor_id}.", ""))}"
             }
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
-
     input:
         val(META)
         tuple(val(tumor_id), path(tumor_bam), path(tumor_bai), path(normal_bam), path(normal_bai))
@@ -94,7 +85,6 @@ process run_assembly_GRIDSS2 {
     output:
         path "${tumor_id}.assembly.bam", emit: gridss2_assembly_bam
         path "${tumor_id}.assembly.bam.gridss.working/*", emit: gridss2_assembly
-        path ".command.*"
 
     script:
         otherjvmheap = params.other_jvm_heap
@@ -137,11 +127,6 @@ process call_sSV_GRIDSS2 {
         pattern: "${output_filename}.vcf.gridss.working/*",
         mode: "copy"
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
-
     input:
         val(META)
         tuple(val(tumor_id), path(tumor_bam), path(tumor_bai), path(normal_bam), path(normal_bai))
@@ -156,7 +141,6 @@ process call_sSV_GRIDSS2 {
         path "${output_filename}.vcf", emit: gridss2_vcf
         path "${output_filename}.vcf.idx", emit: gridss2_vcf_idx
         path "${output_filename}.vcf.gridss.working/*", emit: gridss2_vcf_dir
-        path ".command.*"
 
     script:
         otherjvmheap = params.other_jvm_heap
@@ -194,11 +178,6 @@ process filter_sSV_GRIDSS2 {
         pattern: "*.vcf.bgz*",
         mode: "copy"
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
-
     input:
         val(META)
         val(tumor_id)
@@ -207,7 +186,6 @@ process filter_sSV_GRIDSS2 {
 
     output:
         path "*vcf.bgz*", emit: gridss2_filter_vcf_files
-        path ".command.*"
 
     script:
         gridss2_script_dir = "/usr/local/share/gridss-${params.gridss2_version}-1"
