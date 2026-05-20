@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Changed
 
 - Update Delly `v1.7.3` to `v2.0.0`
+- Use `methods.setup_process_afterscript()` for process logs
 
 ### Removed
 
