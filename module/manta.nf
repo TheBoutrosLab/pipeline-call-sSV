@@ -21,11 +21,6 @@ process call_sSV_Manta {
         pattern: "*Stats*",
         mode: "copy"
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
-
     input:
         val(META)
         tuple(val(tumor_id), path(tumor_bam), path(tumor_bai), path(normal_bam), path(normal_bai))
@@ -35,7 +30,6 @@ process call_sSV_Manta {
     output:
         path "${output_filename}_*.vcf.gz*", emit: manta_vcfs
         path "${output_filename}_*Stats*"
-        path ".command.*"
         val tumor_id, emit: tumor_id
     
     script:

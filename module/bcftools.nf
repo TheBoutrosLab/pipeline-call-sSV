@@ -18,11 +18,6 @@ process query_SampleName_BCFtools {
         pattern: "${output_filename}.tsv",
         mode: "copy"
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
-
     input:
         val META
         path input_bcf
@@ -30,7 +25,6 @@ process query_SampleName_BCFtools {
         val tumor_id
 
     output:
-        path ".command.*"
         path "${output_filename}.tsv", emit: samples
 
     script:
@@ -58,11 +52,6 @@ process filter_BCF_BCFtools {
         pattern: "${output_filename}.bcf*",
         mode: "copy"
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
-
     input:
         val META
         path input_bcf
@@ -70,7 +59,6 @@ process filter_BCF_BCFtools {
         val tumor_id
 
     output:
-        path ".command.*"
         path "${output_filename}.bcf", emit: nonPassCallsFiltered_bcf
         path "${output_filename}.bcf.csi", emit: nonPassCallsFiltered_bcf_csi
 
