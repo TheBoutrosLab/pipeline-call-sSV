@@ -12,11 +12,6 @@ process call_SV_SVision {
         pattern: "*.vcf",
         mode: "copy"
 
-    publishDir "${params.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
-
     input:
         val(META)
         tuple val(sample_id), path(bam), path(bam_index)
@@ -26,7 +21,6 @@ process call_SV_SVision {
 
     output:
         tuple val(sample_id), path("SVision*.vcf"), emit: vcf
-        path ".command.*"
 
     script:
     standard_filename = generate_standard_filename(
