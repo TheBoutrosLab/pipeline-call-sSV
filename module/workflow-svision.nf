@@ -40,7 +40,8 @@ workflow workflow_SVision {
     checksum_meta = META.map{ base_m ->
         base_m + [
             "output_dir": "${base_m.workflow_output_dir}/output",
-            "docker_image": params.docker_image_validate
+            "docker_image": params.docker_image_validate,
+            "log_output_dir": "${base_m.log_output_dir}/process-log"
         ]
     }
 
