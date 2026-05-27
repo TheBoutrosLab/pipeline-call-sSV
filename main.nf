@@ -126,7 +126,8 @@ workflow {
 
     pipeval_meta = meta_base.map{ base_m ->
         base_m + [
-            "docker_image": params.docker_image_validate
+            "docker_image": params.docker_image_validate,
+            "log_output_dir": "${base_m.log_output_dir}/process-log"
         ]
     }
 
@@ -252,7 +253,8 @@ workflow {
             delly_meta.map{ base_m ->
                 base_m + [
                     "output_dir": "${base_m.workflow_output_dir}/output",
-                    "docker_image": params.docker_image_validate
+                    "docker_image": params.docker_image_validate,
+                    "log_output_dir": "${base_m.log_output_dir}/process-log"
                 ]
             }.combine(
                 filter_BCF_BCFtools.out.nonPassCallsFiltered_bcf
@@ -289,7 +291,8 @@ workflow {
             manta_meta.map{ base_m ->
                 base_m + [
                     "output_dir": "${base_m.workflow_output_dir}/output",
-                    "docker_image": params.docker_image_validate
+                    "docker_image": params.docker_image_validate,
+                    "log_output_dir": "${base_m.log_output_dir}/process-log"
                 ]
             }.combine(
                 call_sSV_Manta.out.manta_vcfs.flatten()
@@ -359,7 +362,8 @@ workflow {
             gridss2_meta.map{ base_m ->
                 base_m + [
                     "output_dir": "${base_m.workflow_output_dir}/output",
-                    "docker_image": params.docker_image_validate
+                    "docker_image": params.docker_image_validate,
+                    "log_output_dir": "${base_m.log_output_dir}/process-log"
                 ]
             }.combine(
                 compress_VCF_GRIDSS2.out.gzvcf
