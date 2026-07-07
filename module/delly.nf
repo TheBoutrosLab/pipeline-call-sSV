@@ -40,7 +40,7 @@ process call_sSV_Delly {
             )
         """
         set -euo pipefail
-        delly call \
+        delly sr \
             --genome "${reference_fasta}" \
             --exclude "${exclusion_file}" \
             --map-qual "${params.map_qual}" \
