@@ -7,6 +7,7 @@
 * [Flow Diagram](#flow-diagram)
 * [Pipeline Steps](#pipeline-steps)
 * [Inputs](#Inputs)
+* [Profiles](#profiles)
 * [Outputs](#outputs)
 * [Testing and Validation](#testing-and-validation)
     * [Test Data Set](#test-data-set)
@@ -167,6 +168,10 @@ input:
 | work_dir	| no	| path | The path to a temporary working directory for Nextflow, storing intermediate files and logs. It is recommended to use fast, local storage with high I/O performance. |
 | verbose |	yes |	boolean	| If set to `true`, the values of input channels will be printed, can be used for debugging|
 | `docker_container_registry` | optional | string | Registry containing tool Docker images. Default: `ghcr.io/uclahs-cds` |
+| `apptainer_library` | no | path | Path to readable Apptainer library directory containing any existing Apptainer images. |
+| `apptainer_cache` | no | path | Path to writable Apptainer cache directory where images will be cached. |
+| `singularity_library` | no | path | Path to readable Singularity library directory containing any existing Singularity images. |
+| `singularity_cache` | no | path | Path to writable Singularity cache directory where images will be cached. |
 
 An example of the NextFlow Input Parameters Config file can be found [here](config/template.config).
 
@@ -238,6 +243,14 @@ base_resource_update {
     ]
 }
 ```
+
+## Profiles
+
+Profiles can be selected to control which containerization system will be used. Profile selection can be passed to the Nextflow run command using `-profile`. Available profiles:
+
+- `docker` - Use Docker as the containerization system
+- `apptainer` - Use Apptainer as the containerization system
+- `singularity` - Use Singularity as the containerization system
 
 ## Outputs
 
