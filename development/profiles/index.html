@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Testing and Validation - pipeline-call-sSV</title>
+    <title>Profiles - pipeline-call-sSV</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Testing and Validation";
-        var mkdocs_page_input_path = "testing-and-validation.md";
+        var mkdocs_page_name = "Profiles";
+        var mkdocs_page_input_path = "profiles.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -64,8 +64,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../nextflow-config-file-parameters/">Nextflow Config File Parameters</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../profiles/">Profiles</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Profiles</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -76,12 +78,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../intermediates/">Intermediates</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Testing and Validation</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#test-data-set">Test Data Set</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../testing-and-validation/">Testing and Validation</a>
                 </li>
               </ul>
               <ul>
@@ -110,7 +108,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Testing and Validation</li>
+      <li class="breadcrumb-item active">Profiles</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/TheBoutrosLab/pipeline-call-sSV/blob/5ed8cc4df817683ff5c79334559ccc09215ef28d/README.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -120,40 +118,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="testing-and-validation">Testing and Validation</h2>
-<h3 id="test-data-set">Test Data Set</h3>
-<table>
-<thead>
-<tr>
-<th>Data Set</th>
-<th>Normal Sample</th>
-<th>Tumor Sample</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A-mini TWGSAMIN000001-T003-S03-F</td>
-<td>TWGSAMIN000001-N003-S03-F</td>
-<td>TWGSAMIN000001-T003-S03-F</td>
-</tr>
-<tr>
-<td>ILHNLNEV000009</td>
-<td>ILHNLNEV000009-N001-B01-F</td>
-<td>ILHNLNEV000009-T002-L01-F</td>
-</tr>
-<tr>
-<td>DTB-266_WCDT</td>
-<td>DTB-266_DNA_N</td>
-<td>DTB-266_DNA_T</td>
-</tr>
-</tbody>
-</table>
+                <h2 id="profiles">Profiles</h2>
+<p>Profiles can be selected to control which containerization system will be used. Profile selection can be passed to the Nextflow run command using <code>-profile</code>. Available profiles:</p>
+<ul>
+<li><code>docker</code> - Use Docker as the containerization system</li>
+<li><code>apptainer</code> - Use Apptainer as the containerization system</li>
+<li><code>singularity</code> - Use Singularity as the containerization system</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../intermediates/" class="btn btn-neutral float-left" title="Intermediates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../performance-validation/" class="btn btn-neutral float-right" title="Performance Validation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../nextflow-config-file-parameters/" class="btn btn-neutral float-left" title="Nextflow Config File Parameters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../outputs/" class="btn btn-neutral float-right" title="Outputs">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -180,10 +157,10 @@
         </span>
     
     
-      <span><a href="../intermediates/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../nextflow-config-file-parameters/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../performance-validation/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../outputs/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
