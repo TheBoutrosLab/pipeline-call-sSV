@@ -440,6 +440,9 @@
     "sample": [
       "610093"
     ],
+    "singularity": {
+      "enabled": false
+    },
     "timeline": {
       "enabled": true,
       "file": "/tmp/outputs/call-sSV-VER.SI.ON/610093/log-call-sSV-VER.SI.ON-19970704T165655Z/nextflow-log/timeline.html"
