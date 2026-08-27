@@ -379,4 +379,8 @@ workflow {
             input_ch_samples_with_index.map{ input_sample -> [input_sample.id, input_sample.path, input_sample.index] }
             )
         }
+    
+    workflow.onComplete = {
+        WorkflowFinalizer.completeWorkflow(workflow, params);
     }
+}
