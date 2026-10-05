@@ -12,6 +12,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - Tar process logs on success
 
+## [Unreleased]
+
+### Changed
+
+- Update Delly `v2.6.0` to `v2.7.0`
+
 ## [8.5.0] - 2026-08-19
 
 ### Changed
