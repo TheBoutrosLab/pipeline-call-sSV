@@ -8,6 +8,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [8.7.0] - 2026-10-05
+
 ### Changed
 
 - Update Delly `v2.6.0` to `v2.7.0`
@@ -252,3 +254,5 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 [8.4.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.3.0...v8.4.0
 [8.5.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.4.0...v8.5.0
 [8.6.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.5.0...v8.6.0
+[8.7.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.6.0...v8.7.0
+[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.7.0...HEAD
