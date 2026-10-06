@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Changed
+
+- Update module submodule with CRAM validation handling
+
 ## [8.7.0] - 2026-10-05
 
 ### Changed
