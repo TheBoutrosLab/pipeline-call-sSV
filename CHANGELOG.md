@@ -8,6 +8,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [8.7.2] - 2026-10-09
+
 ### Changed
 
 - Update config submodule to fix task property access
@@ -266,4 +268,5 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 [8.6.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.5.0...v8.6.0
 [8.7.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.6.0...v8.7.0
 [8.7.1]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.7.0...v8.7.1
-[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.7.1...HEAD
+[8.7.2]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.7.1...v8.7.2
+[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.7.2...HEAD
