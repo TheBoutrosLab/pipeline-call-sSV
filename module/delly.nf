@@ -16,7 +16,8 @@ process call_sSV_Delly {
     publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "DELLY-*.bcf*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)
@@ -60,7 +61,8 @@ process filter_sSV_Delly {
     publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "${output_filename}.bcf*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val META
