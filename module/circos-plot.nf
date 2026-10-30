@@ -12,15 +12,16 @@ include { generate_standard_filename } from '../external/pipeline-Nextflow-modul
 
 process plot_SV_circlize {
     container params.docker_image_circlize
-    containerOptions "${params.container_mount_flag} ${projectDir}:${projectDir}"
 
     errorStrategy 'ignore'
 
     publishDir "${META.workflow_output_dir}/QC",
         pattern: "*.png",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
-    ext log_dir: { "${task.process}/${task.process}-${task.index}" }
+    ext log_dir: { "${task.process}/${task.process}-${task.index}" },
+        containerOptions: { "${params.container_mount_flag} ${META.project_dir}:${META.project_dir}" }
 
     input:
         val(META)

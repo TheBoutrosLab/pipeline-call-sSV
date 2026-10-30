@@ -1,7 +1,5 @@
 #!/usr/bin/env nextflow
 
-nextflow.enable.dsl=2
-
 import java.nio.file.Paths
 
 log.info """\
@@ -84,11 +82,11 @@ include {
 } from './external/pipeline-Nextflow-module/modules/PipeVal/generate-checksum/main.nf'
 
 
-Channel.from(params.samples_to_process)
+Channel.fromList(params.samples_to_process)
     .map{ sample -> ['index': indexFile(sample.path)] + sample }
     .set{ input_ch_samples_with_index }
 
-Channel.from(params.samples_to_process)
+Channel.fromList(params.samples_to_process)
     .map{ sample -> [sample.id, sample.path, indexFile(sample.path)] }
     .set{ gridss2_ch }
 
@@ -133,13 +131,15 @@ workflow {
 
     delly_meta = meta_base.map{ base_m ->
         base_m + [
-            "workflow_output_dir": "${params.output_dir_base}/DELLY-${params.delly_version}"
+            "workflow_output_dir": "${params.output_dir_base}/DELLY-${params.delly_version}",
+            "project_dir": "${projectDir}"
         ]
     }
 
     manta_meta = meta_base.map{ base_m ->
         base_m + [
-            "workflow_output_dir": "${params.output_dir_base}/Manta-${params.manta_version}"
+            "workflow_output_dir": "${params.output_dir_base}/Manta-${params.manta_version}",
+            "project_dir": "${projectDir}"
         ]
     }
 
