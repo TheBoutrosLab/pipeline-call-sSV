@@ -10,7 +10,8 @@ process call_SV_SVision {
     publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "*.vcf",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)

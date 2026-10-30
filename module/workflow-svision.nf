@@ -1,5 +1,3 @@
-nextflow.enable.dsl=2
-
 include { call_SV_SVision } from "./svision.nf"
 
 include { compress_index_VCF } from "../external/pipeline-Nextflow-module/modules/common/index_VCF_tabix/main.nf"

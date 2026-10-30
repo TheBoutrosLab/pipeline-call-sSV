@@ -15,11 +15,13 @@ process call_sSV_Manta {
 
     publishDir "${META.workflow_output_dir}/output",
         pattern: "*vcf.gz*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     publishDir "${META.workflow_output_dir}/QC",
         pattern: "*Stats*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)

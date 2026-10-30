@@ -19,7 +19,8 @@ process preprocess_BAM_GRIDSS2 {
         mode: "copy",
         saveAs: {
             "${output_filename}.gridss.working/${output_filename}.${sanitize_string(file(it).getName().replace("${bam_name}.", ""))}"
-            }
+            },
+        failOnError: false
 
     ext log_dir_suffix: { "/${task.process}-${task.index}" }
 
@@ -64,7 +65,8 @@ process run_assembly_GRIDSS2 {
         mode: "copy",
         saveAs: {
             "${output_filename}_${sanitize_string(file(it).getName().replace("${tumor_id}.", ""))}"
-            }
+            },
+        failOnError: false
 
     publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
@@ -72,7 +74,8 @@ process run_assembly_GRIDSS2 {
         mode: "copy",
         saveAs: {
             "${output_filename}.assembly.bam.gridss.working/${output_filename}_${sanitize_string(file(it).getName().replace("${tumor_id}.", ""))}"
-            }
+            },
+        failOnError: false
 
     input:
         val(META)
@@ -120,12 +123,14 @@ process call_sSV_GRIDSS2 {
     publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "${output_filename}.{vcf,vcf.idx}",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "${output_filename}.vcf.gridss.working/*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)
@@ -176,7 +181,8 @@ process filter_sSV_GRIDSS2 {
 
     publishDir "${META.workflow_output_dir}/output/",
         pattern: "*.vcf.bgz*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)
