@@ -142,7 +142,7 @@
       "map_qual": "20",
       "max_cpus": "16",
       "max_memory": "31 GB",
-      "max_time": "24d 20h 31m 24s",
+      "max_time": "1000d",
       "min_clique_size": "5",
       "min_cpus": "1",
       "min_memory": "1 MB",
@@ -260,7 +260,7 @@
         "3": "3",
         "closure": "closure()"
       },
-      "echo": true,
+      "debug": true,
       "errorStrategy": {
         "1": "terminate",
         "2": "terminate",
