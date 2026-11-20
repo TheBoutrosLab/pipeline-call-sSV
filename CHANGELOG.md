@@ -8,6 +8,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [9.1.0] - 2026-11-20
+
 ### Changed
 
 - Disable `ociAutoPull` when library or cache dir is given
@@ -280,4 +282,5 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 [8.7.1]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.7.0...v8.7.1
 [8.7.2]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.7.1...v8.7.2
 [9.0.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v8.7.2...v9.0.0
-[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v9.0.0...HEAD
+[9.1.0]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v9.0.0...v9.1.0
+[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-sSV/compare/v9.1.0...HEAD
